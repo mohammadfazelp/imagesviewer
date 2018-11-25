@@ -46,5 +46,12 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView, IBaseMvp, BaseFrag
     }
 
     private fun performDI() = AndroidInjection.inject(this)
+
+
+    override fun onFragmentDetached(tag: String) {
+    }
+
+    override fun onFragmentAttached() {
+    }
 }
 

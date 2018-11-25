@@ -6,5 +6,7 @@ import com.faz.imagesviewer.ui.home.view.HomeView
 
 interface IHomeMvpPresenter<V : HomeView, I : IHomeMvpInteractor> : IPresenter<V, I> {
 
-    fun onServerLoginClicked(email: String, password: String)
+    //fun onServerLoginClicked(email: String, password: String)
+
+    fun onServerGetImages()
 }

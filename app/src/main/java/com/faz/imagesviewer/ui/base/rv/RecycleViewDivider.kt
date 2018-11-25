@@ -22,7 +22,8 @@ class RecycleViewDivider(context: Context, orientation: Int,
 
     protected val mBounds = Rect()
 
-    constructor(context: Context, orientation: Int, @DrawableRes resId: Int) : this(context, orientation, ContextCompat.getDrawable(context, resId)) {}
+    constructor(context: Context, orientation: Int, @DrawableRes resId: Int) : this(context,
+            orientation, ContextCompat.getDrawable(context, resId)) {}
 
     init {
         setOrientation(orientation)

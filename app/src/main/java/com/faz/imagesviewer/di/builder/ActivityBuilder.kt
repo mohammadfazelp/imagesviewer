@@ -13,5 +13,4 @@ abstract class ActivityBuilder {
 
 //    @ContributesAndroidInjector(modules = [(BlogFragmentProvider::class), (OpenSourceFragmentProvider::class)])
 //    abstract fun bindFeedActivity(): FeedActivity
-
 }

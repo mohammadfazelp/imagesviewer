@@ -1,15 +1,24 @@
 package com.faz.imagesviewer.data.network
 
+import androidx.databinding.ObservableArrayList
+import com.faz.imagesviewer.data.network.model.images.ImageResponse
+import com.faz.imagesviewer.data.network.model.images.ImagesListResponse
 import com.rx2androidnetworking.Rx2AndroidNetworking
 import io.reactivex.Observable
 import javax.inject.Inject
 
 class ApiHelper @Inject constructor(private val apiHeader: ApiHeader) : IApiHelper {
 
-    override fun performServerLogin(request: LoginRequest.ServerLoginRequest): Observable<LoginResponse> =
-            Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
-                    .addHeaders(apiHeader.publicApiHeader)
-                    .addBodyParameter(request)
+    /*override fun getImagesFromServer(): Observable<ImagesListResponse> =
+        Rx2AndroidNetworking.get(ApiEndPoint.BASE_URL)
+                //.addHeaders(apiHeader.publicApiHeader)
+                .build()
+                .getObjectObservable(ImagesListResponse::class.java)*/
+
+    override fun getImagesFromServer(): Observable<ArrayList<ImageResponse>> =
+            Rx2AndroidNetworking.get(ApiEndPoint.BASE_URL)
+                    //.addHeaders(apiHeader.publicApiHeader)
                     .build()
-                    .getObjectObservable(LoginResponse::class.java)
+                    .getObjectObservable(arrayOf(ObservableArrayListArrayList)
+                    <ImageResponse>::class.java)
 }

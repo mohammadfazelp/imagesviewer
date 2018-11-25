@@ -8,7 +8,9 @@ import com.faz.imagesviewer.utils.AppConstants
 import javax.inject.Inject
 
 class PreferenceHelper @Inject constructor(context: Context,
-                                           @PreferenceInfo private val prefFileName: String) : IPreferenceHelper {
+                                           @PreferenceInfo private val prefFileName: String) :
+        IPreferenceHelper {
+
     companion object {
         private val PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE"
         private val PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID"

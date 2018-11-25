@@ -38,7 +38,7 @@ class AppModule {
 
     @Provides
     @PreferenceInfo
-    internal fun provideprefFileName(): String = AppConstants.PREF_NAME
+    internal fun providePrefFileName(): String = AppConstants.PREF_NAME
 
     @Provides
     @Singleton

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import com.faz.imagesviewer.di.component.DaggerAppComponent
 import com.faz.imagesviewer.ui.base.BaseApp
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

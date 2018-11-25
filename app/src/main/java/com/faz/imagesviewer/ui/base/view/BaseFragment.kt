@@ -16,7 +16,7 @@ import com.faz.imagesviewer.utils.CommonUtils
 import dagger.android.support.AndroidSupportInjection
 
 
-abstract class BaseFragment : Fragment(), IBaseView {
+abstract class BaseFragment : Fragment(), IBaseView ,IBaseMvp{
 
     protected var mContentView: View? = null
     protected var mActivity: Activity?=null
