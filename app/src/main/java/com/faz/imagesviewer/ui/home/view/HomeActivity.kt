@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.faz.imagesviewer.R
@@ -24,7 +25,7 @@ class HomeActivity : BaseActivity() , HomeView {
 
     private lateinit var swipeContainer : SwipeRefreshLayout
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var linearLayoutManager: StaggeredGridLayoutManager
 
     private lateinit var adapter: RecyclerAdapter
 
@@ -61,18 +62,16 @@ class HomeActivity : BaseActivity() , HomeView {
     override fun processLogic() {
 
         presenter.onAttach(this)
-        linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView = findViewById(R.id.recyclerView)
         swipeContainer = findViewById(R.id.swipeContainer)
 
-        swipeContainer.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
-            override fun onRefresh() {
-                adapter.clear()
-                fetchImages(0)
-                swipeContainer.isRefreshing = false
-            }
-        })
+        swipeContainer.setOnRefreshListener {
+            adapter.clear()
+            fetchImages(0)
+            swipeContainer.isRefreshing = false
+        }
         recyclerView.layoutManager = linearLayoutManager
         adapter = RecyclerAdapter(imageList,this)
         recyclerView.adapter = adapter

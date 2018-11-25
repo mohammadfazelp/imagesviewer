@@ -16,8 +16,8 @@ data class User(@Expose
                 var name: String? = null,
 
                 @Expose
-                @SerializedName("profile_images")
-                var profile_images: ProfileImage? = null,
+                @SerializedName("profile_image")
+                var profile_image: ProfileImage? = null,
 
                 @Expose
                 @SerializedName("links")

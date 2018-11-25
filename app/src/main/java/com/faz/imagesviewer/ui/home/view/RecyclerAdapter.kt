@@ -55,8 +55,9 @@ class RecyclerAdapter (private val imageList: ArrayList<ImageResponse>, context:
         fun bindPhoto(image: ImageResponse) {
             this.image = image
             image.urls?.small?.let { ImageLoader.displayImage(it, view.itemImage) }
-            view.itemDate.text = image.user?.username
+            view.itemTitle.text = image.user?.username
             view.itemDescription.text = image.user?.name
+            image.user?.profile_image?.small?.let { ImageLoader.displayImage(it, view.avatarImageView) }
         }
     }
 
