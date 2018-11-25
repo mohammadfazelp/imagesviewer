@@ -1,39 +1,30 @@
-package com.faz.imagesviewer.utils.imageloader
+package com.faz.imageloader
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
-import android.util.LruCache
 import android.widget.ImageView
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-object _ImageLoader {
-    private var imageCache: LruCache<String, Bitmap>
+object ImageLoader {
+    private lateinit var cache: ImageCache
     private var executorService: ExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
     private val uiHandler: Handler = Handler(Looper.getMainLooper())
 
-    init {
-        val maxMemory: Long = Runtime.getRuntime().maxMemory() / 1024
-        val cacheSize: Int = (maxMemory / 4).toInt()
-
-        imageCache = object : LruCache<String, Bitmap>(cacheSize) {
-            override fun sizeOf(key: String?, bitmap: Bitmap?): Int {
-                return (bitmap?.rowBytes ?: 0) * (bitmap?.height ?: 0) / 1024
-            }
-        }
+    fun setCache(cache: ImageCache) {
+        ImageLoader.cache = cache
     }
 
     fun displayImage(url: String, imageView: ImageView) {
-        val cached = imageCache.get(url)
+        val cached = cache.get(url)
         if (cached != null) {
             updateImageView(imageView, cached)
             return
         }
-
         imageView.tag = url
         executorService.submit {
             val bitmap: Bitmap? = downloadImage(url)
@@ -41,9 +32,13 @@ object _ImageLoader {
                 if (imageView.tag == url) {
                     updateImageView(imageView, bitmap)
                 }
-                imageCache.put(url, bitmap)
+                cache.put(url, bitmap)
             }
         }
+    }
+
+    fun clearCache() {
+        cache.clear()
     }
 
     private fun updateImageView(imageView: ImageView, bitmap: Bitmap) {
@@ -62,7 +57,6 @@ object _ImageLoader {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         return bitmap
     }
 }

@@ -1,4 +1,5 @@
-package com.faz.imagesviewer.utils.imageloader
+/*
+package com.faz.imageloader
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,7 +11,9 @@ class DiskCache(context: Context) : ImageCache {
     private var cache: DiskLruCache = DiskLruCache.open(context.cacheDir, 1, 1, 10 * 1024 * 1024)
 
     override fun get(url: String): Bitmap? {
-        val key ="" /*url.md5()*/
+        val key ="" */
+/*url.md5()*//*
+
         val snapshot: DiskLruCache.Snapshot? = cache.get(key)
         return if (snapshot != null) {
             val inputStream: InputStream = snapshot.getInputStream(0)
@@ -22,7 +25,9 @@ class DiskCache(context: Context) : ImageCache {
     }
 
     override fun put(url: String, bitmap: Bitmap) {
-        val key :String ="" /*url.md5()*/
+        val key :String ="" */
+/*url.md5()*//*
+
         var editor: DiskLruCache.Editor? = null
         try {
             editor = cache.edit(key)
@@ -56,4 +61,4 @@ class DiskCache(context: Context) : ImageCache {
             out?.close()
         }
     }
-}
+}*/

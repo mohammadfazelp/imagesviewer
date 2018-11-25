@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.faz.imagesviewer.R
-import com.faz.imagesviewer.utils.imageloader.DoubleCache
-import com.faz.imagesviewer.utils.imageloader.ImageLoader
+import com.faz.imageloader.DoubleCache
+import com.faz.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.row_images.view.*
 
 class RecyclerAdapter (private val photos: ArrayList<Photo>, context : Context)

@@ -1,4 +1,4 @@
-package com.faz.imagesviewer.utils.imageloader
+package com.faz.imageloader
 
 import android.content.Context
 import android.graphics.Bitmap

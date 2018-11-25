@@ -1,7 +1,8 @@
-package com.faz.imagesviewer.utils.imageloader
+package com.faz.imageloader
 
 import android.graphics.Bitmap
 import android.util.LruCache
+import com.faz.imageloader.ImageCache
 
 class MemoryCache : ImageCache {
 
