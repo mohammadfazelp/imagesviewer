@@ -10,7 +10,4 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(HomeActivityModule::class)])
     abstract fun bindHomeActivity(): HomeActivity
-
-//    @ContributesAndroidInjector(modules = [(BlogFragmentProvider::class), (OpenSourceFragmentProvider::class)])
-//    abstract fun bindFeedActivity(): FeedActivity
 }

@@ -59,4 +59,14 @@ class RecyclerAdapter (private val imageList: ArrayList<ImageResponse>, context:
             view.itemDescription.text = image.user?.name
         }
     }
+
+    fun clear(){
+        imageList.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(images : ArrayList<ImageResponse>){
+        imageList.addAll(images)
+        notifyDataSetChanged()
+    }
 }

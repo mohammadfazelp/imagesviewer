@@ -1,10 +1,12 @@
 package com.faz.imagesviewer.ui.home.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.faz.imagesviewer.R
 import com.faz.imagesviewer.data.network.model.images.ImageResponse
@@ -20,9 +22,15 @@ class HomeActivity : BaseActivity() , HomeView {
 
     private lateinit var recyclerView : RecyclerView
 
+    private lateinit var swipeContainer : SwipeRefreshLayout
+
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var adapter: RecyclerAdapter
+
+    private var limit :Int = 5
+
+    private var offset: Int=0
 
     private var imageList : ArrayList<ImageResponse>  = arrayListOf()
 
@@ -51,12 +59,27 @@ class HomeActivity : BaseActivity() , HomeView {
     }
 
     override fun processLogic() {
+
         presenter.onAttach(this)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.recyclerView)
+        swipeContainer = findViewById(R.id.swipeContainer)
+
+        swipeContainer.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+            override fun onRefresh() {
+                adapter.clear()
+                fetchImages(0)
+                swipeContainer.isRefreshing = false
+            }
+        })
         recyclerView.layoutManager = linearLayoutManager
         adapter = RecyclerAdapter(imageList,this)
         recyclerView.adapter = adapter
+        presenter.onServerGetImages()
+    }
+
+    private fun fetchImages(offset : Int){
         presenter.onServerGetImages()
     }
 
@@ -65,5 +88,4 @@ class HomeActivity : BaseActivity() , HomeView {
 
     override fun initData(bundle: Bundle?) {
     }
-
 }

@@ -34,7 +34,7 @@ class AppModule {
 
     @Provides
     @ApiKeyInfo
-    internal fun provideApiKey(): String = "" /*BuildConfig.API_KEY*/
+    internal fun provideApiKey(): String = "" /*AppConstants.API_KEY*/
 
     @Provides
     @PreferenceInfo
