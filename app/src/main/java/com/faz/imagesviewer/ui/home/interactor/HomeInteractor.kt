@@ -12,6 +12,6 @@ class HomeInteractor @Inject internal constructor(preferenceHelper: IPreferenceH
                                                   apiHelper: IApiHelper) :
         BaseInteractor(preferenceHelper, apiHelper), IHomeMvpInteractor {
 
-    override fun doServerGetImagesApiCall(): Observable<ArrayList<ImageResponse>> =
+    override fun doServerGetImagesApiCall(): Observable<MutableList<ImageResponse>>? =
             apiHelper.getImagesFromServer()
 }

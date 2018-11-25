@@ -24,8 +24,12 @@ class HomeActivity : BaseActivity() , HomeView {
 
     private lateinit var adapter: RecyclerAdapter
 
+    private lateinit var imageList : ArrayList<ImageResponse>
+
     override fun addData(images: ArrayList<ImageResponse>) {
         Log.v("images",images.toString())
+        imageList.addAll(images)
+        adapter.notifyDataSetChanged()
     }
 
     override fun showError(err: Throwable) {
@@ -47,12 +51,7 @@ class HomeActivity : BaseActivity() , HomeView {
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = linearLayoutManager
-        val photosList = arrayListOf<Photo>()
-        /*for (i in 1..50) {
-            val photo = Photo("","Date","Desc")
-            photosList.add(photo)
-        }*/
-        adapter = RecyclerAdapter(photosList,this)
+        adapter = RecyclerAdapter(imageList,this)
         recyclerView.adapter = adapter
     }
 

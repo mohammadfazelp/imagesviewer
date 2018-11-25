@@ -5,5 +5,5 @@ import io.reactivex.Observable
 
 interface IApiHelper {
 
-    fun getImagesFromServer():Observable<ArrayList<ImageResponse>>
+    fun getImagesFromServer(): Observable<MutableList<ImageResponse>>?
 }

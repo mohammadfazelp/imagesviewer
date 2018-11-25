@@ -8,57 +8,55 @@ import androidx.recyclerview.widget.RecyclerView
 import com.faz.imagesviewer.R
 import com.faz.imageloader.DoubleCache
 import com.faz.imageloader.ImageLoader
+import com.faz.imagesviewer.data.network.model.images.ImageResponse
 import kotlinx.android.synthetic.main.row_images.view.*
 
-class RecyclerAdapter (private val photos: ArrayList<Photo>, context : Context)
-    : RecyclerView.Adapter<RecyclerAdapter.PhotoHolder>()  {
+class RecyclerAdapter (private val imageList: ArrayList<ImageResponse>, context: Context)
+    : RecyclerView.Adapter<RecyclerAdapter.ImageHolder>()  {
 
     init {
       ImageLoader.setCache(DoubleCache(context))
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
 
         val inflatedView = parent.inflate(R.layout.row_images, false)
-        return PhotoHolder(inflatedView)
+        return ImageHolder(inflatedView)
     }
 
     fun clearCache(){
         ImageLoader.clearCache()
     }
-    override fun getItemCount() = photos.size
 
-    override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
+    override fun getItemCount() = imageList.size
 
-        val itemPhoto = photos[position]
+    override fun onBindViewHolder(holder: ImageHolder, position: Int) {
+
+        val itemPhoto = imageList[position]
         holder.bindPhoto(itemPhoto)
     }
 
-    //1
-    class PhotoHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-        //2
-        private var view: View = v
-        private var photo: Photo? = null
+    class ImageHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
 
-        //3
+        private var view: View = v
+        private var image: ImageResponse? = null
+
         init {
             v.setOnClickListener(this)
         }
 
-        //4
         override fun onClick(v: View) {
             Log.d("RecyclerView", "CLICK!")
         }
 
         companion object {
-            //5
             private val PHOTO_KEY = "PHOTO"
         }
 
-        fun bindPhoto(photo: Photo) {
-            this.photo = photo
-            ImageLoader.displayImage("https://picsum.photos/200/300", view.itemImage)
-            view.itemDate.text = photo.date
-            view.itemDescription.text = photo.desc
+        fun bindPhoto(image: ImageResponse) {
+            this.image = image
+            image.urls?.small?.let { ImageLoader.displayImage(it, view.itemImage) }
+            view.itemDate.text = image.user?.username
+            view.itemDescription.text = image.user?.name
         }
     }
 }

@@ -7,5 +7,5 @@ import io.reactivex.Observable
 
 interface IHomeMvpInteractor : IInteractor {
 
-    fun doServerGetImagesApiCall():Observable<ArrayList<ImageResponse>>
+    fun doServerGetImagesApiCall(): Observable<MutableList<ImageResponse>>?
 }
