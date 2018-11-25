@@ -7,11 +7,6 @@ import javax.inject.Inject
 
 class ApiHelper @Inject constructor(private val apiHeader: ApiHeader) : IApiHelper {
 
-    /*override fun getImagesFromServer(): Observable<ImagesListResponse> =
-        Rx2AndroidNetworking.get(ApiEndPoint.BASE_URL)
-                //.addHeaders(apiHeader.publicApiHeader)
-                .build()
-                .getObjectObservable(ImagesListResponse::class.java)*/
 
     override fun getImagesFromServer(): Observable<MutableList<ImageResponse>>? =
             Rx2AndroidNetworking.get(ApiEndPoint.BASE_URL)
