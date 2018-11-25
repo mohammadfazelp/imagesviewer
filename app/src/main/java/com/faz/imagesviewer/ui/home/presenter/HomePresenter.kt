@@ -16,7 +16,6 @@ class HomePresenter<V : HomeView, I : IHomeMvpInteractor>
         IHomeMvpPresenter<V, I> {
 
     override fun onServerGetImages() {
-        //interactor?.doServerGetImagesApiCall()
         getView()?.showProgress()
         interactor?.let {
             it.doServerGetImagesApiCall()?.compose(

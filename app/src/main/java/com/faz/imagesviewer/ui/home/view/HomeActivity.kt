@@ -24,7 +24,7 @@ class HomeActivity : BaseActivity() , HomeView {
 
     private lateinit var adapter: RecyclerAdapter
 
-    private lateinit var imageList : ArrayList<ImageResponse>
+    private var imageList : ArrayList<ImageResponse>  = arrayListOf()
 
     override fun addData(images: ArrayList<ImageResponse>) {
         Log.v("images",images.toString())
@@ -48,15 +48,15 @@ class HomeActivity : BaseActivity() , HomeView {
     }
 
     override fun initView(savedInstanceState: Bundle, contentView: View) {
+    }
+
+    override fun processLogic() {
+        presenter.onAttach(this)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = linearLayoutManager
         adapter = RecyclerAdapter(imageList,this)
         recyclerView.adapter = adapter
-    }
-
-    override fun processLogic() {
-        presenter.onAttach(this)
         presenter.onServerGetImages()
     }
 
