@@ -1,4 +1,4 @@
-package com.faz.imagesviewer.data.database.repository.questions
+package com.faz.imagesviewer.data.database.repository.images
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,21 +6,16 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "questions")
-data class Question(
+@Entity(tableName = "images")
+data class Image(
         @Expose
         @PrimaryKey
         var id: Long,
 
         @Expose
-        @SerializedName("question_text")
-        @ColumnInfo(name = "question_text")
-        var questionText: String,
-
-        @Expose
-        @SerializedName("question_img_url")
-        @ColumnInfo(name = "question_img_url")
-        var imgUrl: String?,
+        @SerializedName("image_url")
+        @ColumnInfo(name = "image_url")
+        var imgUrl: String,
 
         @Expose
         @SerializedName("created_at")

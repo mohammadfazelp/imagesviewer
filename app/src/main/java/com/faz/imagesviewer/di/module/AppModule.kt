@@ -7,8 +7,8 @@ import com.faz.imagesviewer.di.ApiKeyInfo
 import com.faz.imagesviewer.di.PreferenceInfo
 import com.faz.imagesviewer.utils.SchedulerProvider
 import com.faz.imagesviewer.data.database.AppDatabase
-import com.faz.imagesviewer.data.database.repository.questions.QuestionRepo
-import com.faz.imagesviewer.data.database.repository.questions.QuestionRepository
+import com.faz.imagesviewer.data.database.repository.images.ImagesRepo
+import com.faz.imagesviewer.data.database.repository.images.QuestionRepository
 import com.faz.imagesviewer.data.preferences.PreferenceHelper
 import com.faz.imagesviewer.data.preferences.IPreferenceHelper
 import com.faz.imagesviewer.data.network.ApiHeader
@@ -58,7 +58,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideQuestionRepoHelper(appDatabase: AppDatabase): QuestionRepo =
+    internal fun provideQuestionRepoHelper(appDatabase: AppDatabase): ImagesRepo =
             QuestionRepository(appDatabase.questionsDao())
 
 
